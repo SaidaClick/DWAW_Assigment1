@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mojang Style Data Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Top grossing film analysys</h1>
+    </header>
+
+    <div id="loading-screen">
+        <h2 style="color: var(--mc-gold); font-size: 2rem; margin-bottom: 1rem;">Loading Data...</h2>
+        <div id="error-msg" style="display: none;">
+            <p style="color: var(--mc-redstone); font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem;">Fetch Failed!</p>
+            <p>If you see this, you probably opened the HTML file directly in the browser (file://...).</p>
+            <p style="margin-top: 1rem; color: var(--text-dim);">To fix this, open your terminal in the project folder and run:</p>
+            <div class="error-cmd">python3 -m http.server 8000</div>
+            <p style="margin-top: 1rem; color: var(--text-dim);">Then open <b style="color:white">http://localhost:8000/</b> in your browser.</p>
+        </div>
+    </div>
+
+    <div id="app-content">
+        <div class="stats-row" id="statsRow"></div>
+
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Search film, director, or country...">
+            <button class="btn active" onclick="setDecade('all', this)">All Eras</button>
+            <button class="btn" onclick="setDecade('1990s', this)">1990s</button>
+            <button class="btn" onclick="setDecade('2000s', this)">2000s</button>
+            <button class="btn" onclick="setDecade('2010s', this)">2010s</button>
+            <button class="btn" onclick="setDecade('2020s', this)">2020s</button>
+        </div>
+
+        <div class="dashboard">
+            <div class="panel top-gold">
+                <div class="panel-title">Top Directors by Revenue</div>
+                <div id="directorBars"></div>
+            </div>
+
+            <div class="panel top-dia">
+                <div class="panel-title">Top 5</div>
+                <table id="topFilmsTable">
+                    <tbody id="topFilmsBody"></tbody>
+                </table>
+            </div>
+
+            <div class="panel top-red">
+                <div class="panel-title">Country of Origin</div>
+                <div class="donut-container" id="donutWrap"></div>
+            </div>
+
+            <div class="panel top-ame">
+                <div class="panel-title">Release Timeline</div>
+                <div class="timeline-chart" id="timelineChart"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
